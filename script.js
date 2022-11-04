@@ -42,10 +42,11 @@ checkBtn.addEventListener('click', function(){
 if(!inputIn){ //1 if s
     message.textContent = "not a number";
 }; //1 if e
-else if { //1 else s
+ //1 else s
     
-   else if(score>0){ //2 if s
-        else if(inputIn===randomNumber){
+    
+ if(score>0){ //2 if s
+         if(inputIn===randomNumber){
         message.textContent = "Perfect Guess";
         score = score + 1;
         displayScore();
@@ -55,7 +56,7 @@ else if { //1 else s
         score = score - 1;
         displayScore();
         }
-        else if {
+        else if(inputIn>randomNumber) {
         message.textContent = "Too High";
         score = score - 1;
         displayScore();
