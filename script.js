@@ -1,83 +1,77 @@
-
-
-
-// agin <button> 
+// agin <button>
 const againBtn = document.getElementsByClassName("again");
 // header <h1>
 const headerH1 = document.querySelector("h1");
-// question mark remove on win 
-// < div > ?
-const questionMark = document.querySelector("div");
-// Start, wrong, right < p > /23
 
-// score < p > /24
-// const score = document.getElementsByClassName("score");
-//high score < p > /25
-const highScore = document.getElementsByClassName("highscore");
-// body < body > to change color on win
-const bodyTag = document.getElementsByTagName("body");
-// const addGuessInVariable = () => {
-//     const guess = inputIn.value;
-//     return guess;
-// }
-// check <button>
-// const randomNumber = Math.floor(Math.random() * 19) + 1;
-// console.log(randomNumber);
 let highscore = 0;
 let score = 20;
 
 const checkBtn = document.querySelector(".check");
-checkBtn.addEventListener('click', function(){
+checkBtn.addEventListener(
+  "click", function () {
     // console.log(document.querySelector(".guess").value);
-    // score <input> 
+    // score <input>
     const inputIn = parseInt(document.querySelector(".guess").value);
-// const randomNumber = Math.floor(Math.random() * 9) + 1;
-    const randomNumber = 5;
-// let message = document.getElementsByClassName("message").textContent;
+    //
+    // let message = document.getElementsByClassName("message").textContent;
     const message = document.querySelector(".message");
 
     const displayScore = () => {
-    document.querySelector(".score").innerHTML = score;
-}
-if(!inputIn){ //1 if s
-    message.textContent = "not a number";
-}; //1 if e
- //1 else s
-    
-    
- if(score>0){ //2 if s
-         if(inputIn===randomNumber){
-        message.textContent = "Perfect Guess";
-        score = score + 1;
-        displayScore();
-        }
-        else if (inputIn<randomNumber){
-        message.textContent = "Too Low";
-        score = score - 1;
-        displayScore();
-        }
-        else if(inputIn>randomNumber) {
-        message.textContent = "Too High";
-        score = score - 1;
-        displayScore();
-        } // 2 if e
-
-
-    else if(score>20) { //2 else if s
-        message.textContent = "you won, and your highscore is increased";
-        highScore = highScore + score;
-        document.querySelector(".highscore").value = highScore;
-        score = 20;
-        displayScore();
-        } //2 else if e
-    else { // 3 else s
+      document.querySelector(".score").innerHTML = score;
+    };
+    const resetScore = () => {
+      score = 20;
+      document.querySelector(".score").textContent = 20;
+    };
+    //displayscore func closing bracket
+    if (!inputIn) {
+      //1 if s
+      message.textContent = "not a number";
+    } else {
+      if (score === 0) {
         message.textContent = "You Lost, Try again";
-        score=20;
+        resetScore();
         displayScore();
-        } // 3 else e
- } //2 if ends
-} //1 else e
-);
+      } else {
+        //    if score is greater than 19
 
+        if (score > 20) {
+          highscore = highscore + score;
+          document.querySelector(".highscore").textContent = highscore;
+          resetScore();
+          displayScore();
+        } else {
+          if (score > 0) {
+            //2; if s
+            // const randomNumber = 5;
+            const randomNumber = Math.floor(Math.random() * 9) + 1;
 
+            if (inputIn === randomNumber) {
+              message.textContent = "Perfect Guess";
+              score++;
+              displayScore();
+                 document.querySelector("body").style.backgroundColor = "#60b347";
+                 document.querySelector(".number").textContent = randomNumber;
+            // document.body.classList.add(".win");
+            
+            } else {
+                if(inputIn < randomNumber) {
+                    message.textContent = "Too Low";
+                    score = score - 1;
+                    displayScore();
+                    document.querySelector("body").style.backgroundColor = "#222";
+                    document.querySelector(".number").textContent = "?";
+                  } else if (inputIn > randomNumber) {
+                    message.textContent = "Too High";
+                    score = score - 1;
+                    displayScore();
+                  }
+            } 
+          }
+        }
 
+        //60 if score > 0 closing
+      } //else closing
+    } // 45 else closing;
+  } //event listener function closing
+  ); // event listener bracket closing;
